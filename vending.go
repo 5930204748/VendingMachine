@@ -12,7 +12,6 @@ func (v VendingMachine) showTotalBalance() int {
 func (v *VendingMachine) insertCoins(coin string) {
 	elem := v.m[coin]
 	v.totalCoins += elem
-
 }
 
 func NewVendingMachine() VendingMachine {
@@ -39,9 +38,7 @@ func (v *VendingMachine) buyDrink(drink string) string {
 		return "Add more money"
 	}
 	v.totalCoins -= price
-
-	return drink
-
+	return drink + v.changeCoins()
 }
 
 func (v *VendingMachine) changeCoins() string {

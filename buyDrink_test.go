@@ -54,7 +54,7 @@ func TestBuy_CC_WithTotalBalance_10_BathShouldReturn_AddMoreMoney(t *testing.T) 
 	}
 }
 
-func Buy_CC_WithTotalBalance_15_BathShouldReturn_CC_TW_O(t *testing.T) {
+func TestBuy_CC_WithTotalBalance_15_BathShouldReturn_CC_TW_O(t *testing.T) {
 	expectedResult := "CC, TW, O"
 	v := NewVendingMachine()
 	v.totalCoins = 15
