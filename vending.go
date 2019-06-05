@@ -23,3 +23,21 @@ func NewVendingMachine() VendingMachine {
 	m["O"] = 1
 	return VendingMachine{m: m}
 }
+
+func (v *VendingMachine) buyDrink(drink string) string {
+	m := make(map[string]int)
+	m["SD"] = 18
+	m["CC"] = 12
+	m["DW"] = 7 
+	
+	price, ok := m[drink]
+
+	if ok {
+		if v.totalCoins == price {
+			return drink
+		}
+	}
+	return "Add more money"
+
+}
+
