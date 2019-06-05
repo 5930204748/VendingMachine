@@ -25,3 +25,27 @@ func TestBuy_CC_WithTotalBalance_12_BathShouldReturn_CC(t *testing.T) {
 		t.Errorf("%v but got %v", expectedResult, actualResult)
 	}
 }
+
+func TestBuy_XYZ_WithTotalBalance_12_BathShouldReturn_NoItem(t *testing.T) {
+	expectedResult := "No Item"
+	v := NewVendingMachine()
+	v.totalCoins = 12
+
+	actualResult := v.buyDrink("XYZ")
+
+	if actualResult != expectedResult {
+		t.Errorf("%v but got %v", expectedResult, actualResult)
+	}
+}
+
+func TestBuy_CC_WithTotalBalance_10_BathShouldReturn_AddMoreMoney(t *testing.T) {
+	expectedResult := "Add more money"
+	v := NewVendingMachine()
+	v.totalCoins = 10
+
+	actualResult := v.buyDrink("CC")
+
+	if actualResult != expectedResult {
+		t.Errorf("%v but got %v", expectedResult, actualResult)
+	}
+}

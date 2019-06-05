@@ -32,12 +32,14 @@ func (v *VendingMachine) buyDrink(drink string) string {
 	
 	price, ok := m[drink]
 
-	if ok {
-		if v.totalCoins == price {
-			return drink
-		}
+	if !ok {
+		return "No Item"
 	}
-	return "Add more money"
+	if v.totalCoins < price {
+		return "Add more money"
+	}
+
+	return drink
 
 }
 
