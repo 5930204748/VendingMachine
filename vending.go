@@ -28,8 +28,8 @@ func (v *VendingMachine) buyDrink(drink string) string {
 	m := make(map[string]int)
 	m["SD"] = 18
 	m["CC"] = 12
-	m["DW"] = 7 
-	
+	m["DW"] = 7
+
 	price, ok := m[drink]
 
 	if !ok {
@@ -38,8 +38,21 @@ func (v *VendingMachine) buyDrink(drink string) string {
 	if v.totalCoins < price {
 		return "Add more money"
 	}
+	v.totalCoins -= price
 
 	return drink
 
 }
 
+func (v *VendingMachine) changeCoins() string {
+	var changeCoin string
+	coinsValue := [4]int{10, 5, 2, 1}
+	coinsText := [4]string{"T", "F", "TW", "O"}
+	for counter := 0; counter < len(coinsValue); counter++ {
+		for v.totalCoins >= coinsValue[counter] {
+			changeCoin += ", " + coinsText[counter]
+			v.totalCoins -= coinsValue[counter]
+		}
+	}
+	return changeCoin
+}
