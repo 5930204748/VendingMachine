@@ -1,17 +1,17 @@
-package vending
+package vendingmachine
 
 type VendingMachine struct {
-	totalCoins int
+	TotalCoins int
 	m          map[string]int
 }
 
-func (v VendingMachine) showTotalBalance() int {
-	return v.totalCoins
+func (v VendingMachine) ShowTotalBalance() int {
+	return v.TotalCoins
 }
 
-func (v *VendingMachine) insertCoins(coin string) {
+func (v *VendingMachine) InsertCoins(coin string) {
 	elem := v.m[coin]
-	v.totalCoins += elem
+	v.TotalCoins += elem
 }
 
 func NewVendingMachine() VendingMachine {
@@ -23,7 +23,7 @@ func NewVendingMachine() VendingMachine {
 	return VendingMachine{m: m}
 }
 
-func (v *VendingMachine) buyDrink(drink string) string {
+func (v *VendingMachine) BuyDrink(drink string) string {
 	m := make(map[string]int)
 	m["SD"] = 18
 	m["CC"] = 12
@@ -34,21 +34,21 @@ func (v *VendingMachine) buyDrink(drink string) string {
 	if !ok {
 		return "No Item"
 	}
-	if v.totalCoins < price {
+	if v.TotalCoins < price {
 		return "Add more money"
 	}
-	v.totalCoins -= price
-	return drink + v.changeCoins()
+	v.TotalCoins -= price
+	return drink + v.ChangeCoins()
 }
 
-func (v *VendingMachine) changeCoins() string {
+func (v *VendingMachine) ChangeCoins() string {
 	var changeCoin string
 	coinsValue := [4]int{10, 5, 2, 1}
 	coinsText := [4]string{"T", "F", "TW", "O"}
 	for counter := 0; counter < len(coinsValue); counter++ {
-		for v.totalCoins >= coinsValue[counter] {
+		for v.TotalCoins >= coinsValue[counter] {
 			changeCoin += ", " + coinsText[counter]
-			v.totalCoins -= coinsValue[counter]
+			v.TotalCoins -= coinsValue[counter]
 		}
 	}
 	return changeCoin
